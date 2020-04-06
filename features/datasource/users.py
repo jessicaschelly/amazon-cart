@@ -5,9 +5,9 @@ DATA_ACCESS = {
          },
     ],
 
-	"no_credential": [
-	    {"username": "",
-     	 "password": ""}
+	"email_not_registered": [
+	    {"username": "amazon.test.jessic@gmail.com",
+     	 "password": "amazontest123"}
     ],
 
     "invalid_credential": [

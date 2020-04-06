@@ -55,3 +55,16 @@ def fill_in_the_field_a_password(context, credential, password):
     password_field = context.browser.find_element(By.CSS_SELECTOR, login_page.locators['password_field'])
     password_field.clear()
     password_field.send_keys(pwd)
+
+@when("the Login page should have an error message: {message}")
+@then("the Login page should have an error message: {message}")
+def current_page_should_have_an_error_message(context, message):
+    login_page = Singleton.getInstance(context, LoginPage)
+    expected_message = login_page.datapool_read(login_page, SYSTEM_MESSAGES,'login_user', message)
+    current_message = context.browser.find_elements(By.XPATH, login_page.locators['alert_message'])[0].text
+    if current_message == expected_message :
+        pass
+    else:
+        message = "The alert threw wrong message on the login screen. It was expected the '"+expected_message+"' and was obtained '"+current_message+"'."
+        raise Exception(message)
+
