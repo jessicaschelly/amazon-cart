@@ -26,7 +26,7 @@ But if you use linux you can just type those commands:
 - `sudo apt install python3 python3-pip python3-behave`
 - `pip3 install -r requirements.txt`
 
-To run the test cases you can use:
+**_Step 5:_** To run the test cases you can use:
 
 - `behave`
 - `behave -n 'the scenario you want to run'`
