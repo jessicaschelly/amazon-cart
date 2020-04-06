@@ -3,7 +3,7 @@ from features.pages.base_page import BasePage
 
 class LoginPage(BasePage):
 
-    project_url = "https://www.amazon.com/"
+    project_url = "https://www.amazon.com.br/"
 
     locators = {
         "username_field": "#ap_email",
