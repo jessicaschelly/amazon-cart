@@ -33,3 +33,10 @@ def before_scenario(context, scenario):
     context.browser = driver
     context.browser.implicitly_wait(10)
     context.browser.set_page_load_timeout(10)
+
+def after_scenario(context, scenario):
+    if scenario.status == 'failed':
+        # take_screenshot_on_failure(context, scenario)
+        context.browser.close()
+    else:
+        context.browser.close()
