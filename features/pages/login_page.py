@@ -10,5 +10,5 @@ class LoginPage(BasePage):
         "continue_button": "#continue",
         "password_field": "#ap_password",
         "sign_in_button": "#signInSubmit",
-        "alert_message": ".a-alert-content"
+        "alert_message": "a-alert-content"
     }

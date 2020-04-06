@@ -1,11 +1,11 @@
 SYSTEM_MESSAGES = {
     "login_user": [
         {   
-            "email_not_found": "We cannot find an account with that email address",
-            "invalid_credential": "Your password is incorrect",
-            "empty_email_field": "Enter your email or mobile phone number",
-            "empty_password_field": "Enter your password",
-            "invalid_email_format": "We cannot find an account with that email address",
+            "email_not_found": "Não encontramos uma conta associada a este endereço de e-mail",
+            "invalid_credential": "Sua senha está incorreta",
+            "empty_email_field": "Digite seu e-mail ou número de telefone celular",
+            "empty_password_field": "Insira sua senha",
+            "invalid_email_format": "Não encontramos uma conta associada a este endereço de e-mail",
         }
     ],
 }

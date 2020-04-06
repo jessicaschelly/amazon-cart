@@ -61,7 +61,9 @@ def fill_in_the_field_a_password(context, credential, password):
 def current_page_should_have_an_error_message(context, message):
     login_page = Singleton.getInstance(context, LoginPage)
     expected_message = login_page.datapool_read(login_page, SYSTEM_MESSAGES,'login_user', message)
-    current_message = context.browser.find_elements(By.XPATH, login_page.locators['alert_message'])[0].text
+    element_message = context.browser.find_elements(By.CLASS_NAME, login_page.locators['alert_message'])
+    current_message = element_message[0].text + element_message[1].text
+    time.sleep(3)
     if current_message == expected_message :
         pass
     else:
