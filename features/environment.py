@@ -14,6 +14,12 @@ def browser_config(context, browser_name):
 
     if not browser_name != "chrome":
         option = webdriver.ChromeOptions()
+        option.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36")
+        option.add_argument("Accept-Encoding=gzip, deflate")
+        option.add_argument("Accept=text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+        option.add_argument("DNT=1")
+        option.add_argument("Connection=close")
+        option.add_argument("Upgrade-Insecure-Requests=1")
         option.add_argument("--start-maximized")
         option.add_argument("--disable-geolocation")
         option.add_argument("--ignore-certificate-errors")
