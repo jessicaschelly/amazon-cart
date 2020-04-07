@@ -3,12 +3,14 @@ from nose.tools import assert_equals
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from features.datasource.users import DATA_ACCESS
 from features.datasource.messages import SYSTEM_MESSAGES
 from features.object import Singleton
 from features.pages.home_page import HomePage
 from features.pages.login_page import LoginPage
+from features.pages.gmail_page_helper import run_gmail
 import time
 
 @given(u'I navigate to the Amazon Login page')
@@ -17,7 +19,6 @@ def navigate_to_the_amazon_login(context):
     context.browser.get(home_page.project_url)
     login_button = context.browser.find_element(By.XPATH, home_page.locators['login'])
     login_button.click()
-    time.sleep(3)
 
 @when(u'I fill in the field username with {credential}')
 def fill_in_the_field_username(context, credential):
@@ -38,6 +39,10 @@ def click_on_sign_in(context):
     login_page = Singleton.getInstance(context,LoginPage)
     sign_in_button = context.browser.find_element(By.CSS_SELECTOR, login_page.locators['sign_in_button'])
     sign_in_button.click()
+    text= "Verificação necessária"
+    if (text in context.browser.page_source):
+      click_on_continue(context)
+      run_gmail(context)
 
 
 @when(u'the field username is filled with {credential} and the user {user}')
@@ -56,6 +61,15 @@ def fill_in_the_field_a_password(context, credential, password):
     password_field.clear()
     password_field.send_keys(pwd)
 
+@when(u'I am current in Home Page')
+@then(u'I am current in Home Page')
+def current_page_is_home_page(context):
+    text = "Olá, Jéssica"
+    if (text in context.browser.page_source):
+      pass
+    else:
+      message = "Test Failed. You are not at the home page."
+
 @when("the Login page should have an error message: {message}")
 @then("the Login page should have an error message: {message}")
 def current_page_should_have_an_error_message(context, message):
@@ -63,7 +77,6 @@ def current_page_should_have_an_error_message(context, message):
     expected_message = login_page.datapool_read(login_page, SYSTEM_MESSAGES,'login_user', message)
     element_message = context.browser.find_elements(By.CLASS_NAME, login_page.locators['alert_message'])
     current_message = element_message[0].text + element_message[1].text
-    time.sleep(3)
     if current_message == expected_message :
         pass
     else:
