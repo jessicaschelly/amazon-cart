@@ -8,7 +8,11 @@ class HomePage(BasePage):
     locators = {
         "login": "//*[@id='nav-link-accountList']",
         "hover_menu":"//*[@id='nav-link-accountList']",
-        "sign_out_button": "#nav-item-signout",
         "search_field": "//*[@id='twotabsearchtextbox']",
-        
+        "add_cart_button": "add-to-cart-button",
+        "continue_to_cart": "hlb-view-cart-announce",
+        "expected_price": "priceblock_ourprice",
+        "actual_price": "//*[@id='sc-subtotal-amount-buybox']/span",
+        "actual_quantity": "sc-subtotal-label-buybox",
+        "cart_icon": "nav-cart"
     }
