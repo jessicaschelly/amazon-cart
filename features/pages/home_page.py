@@ -14,5 +14,8 @@ class HomePage(BasePage):
         "expected_price": "priceblock_ourprice",
         "actual_price": "//*[@id='sc-subtotal-amount-buybox']/span",
         "actual_quantity": "sc-subtotal-label-buybox",
-        "cart_icon": "nav-cart"
+        "cart_icon": "nav-cart",
+        "cart_count": "nav-cart-count",
+        "home_page_icon": "nav-logo",
+        "delete_item": "[value='Excluir']",
     }

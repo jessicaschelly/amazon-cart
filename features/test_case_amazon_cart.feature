@@ -25,8 +25,8 @@ Feature: Amazon shopping cart functionality
     And I am current in Home page
     And I search for the <product>
     And I click on the <wanted> product in the page
-    And I add the <wanted> product to the cart with <quantity> and <options>
-    Then I validate if the <wanted> is in the cart and if the quantity in the cart is <quantity>
+    And I select the product with quantity <quantity> and the option <options>
+    Then I add it to the cart and validate if the <wanted> product is in the cart and if the quantity in the cart is <quantity> and option is <options>
 
     Examples:
 
@@ -44,11 +44,12 @@ Feature: Amazon shopping cart functionality
     And I am current in Home page
     And I search for the <product>
     And I click on the <wanted> product in the page
-    And I add the <wanted> product to the cart with <quantity> and <options>
+    And I select the product with quantity <quantity> and the option <options>
+    And I add it to the cart and validate if the <wanted> product is in the cart and if the quantity in the cart is <quantity> and option is <options>
     And I remove the product from my cart
     Then I see my cart empty
 
     Examples:
 
-      | credential       | product          | wanted           | quantity | options |
-      | valid credential | Jogador Numero 1 | Jogador Número 1 | 1        | Kindle  |
+      | credential       | product | wanted                                                     | quantity | options |
+      | valid credential | kindle  | Kindle Oasis 32Gb - Agora com temperatura de luz ajustável | 1        | 32 GB   |
