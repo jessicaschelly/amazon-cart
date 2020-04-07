@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
+from features.datasource.messages import SYSTEM_MESSAGES
 from features.object import Singleton
 from features.pages.home_page import HomePage
 from selenium.webdriver.common.keys import Keys
@@ -38,10 +39,10 @@ def select_product(context, wanted):
 
 @when(u'I select the product with quantity {quantity} and the option {options}')
 def put_product_in_cart(context, quantity, options,):
-  home_page = Singleton.getInstance(context,HomePage)
   select_options = context.browser.find_element_by_xpath("//*[contains(text(), '"+options+"')]")
   select_options.click()
-  select_quantity = context.browser.find_element_by_xpath("//select[@name='quantity']/option[@value='"+quantity+"']").click()
+  select_quantity = context.browser.find_element_by_xpath("//select[@name='quantity']/option[@value='"+quantity+"']")
+  select_quantity.click()
 
 @when(u'I add it to the cart and validate if the {wanted} product is in the cart and if the quantity in the cart is {quantity} and option is {options}')
 @then('I add it to the cart and validate if the {wanted} product is in the cart and if the quantity in the cart is {quantity} and option is {options}')
@@ -61,7 +62,7 @@ def validate_cart_page(context, quantity, wanted, options):
     expected_price = expected_price.replace('R$', '').replace('.',''). replace(',', '.')
     expected_price = float(expected_price) * int(quantity);
   assert_equals(expected_price, actual_price)
-  if(actual_quantity != " " or option_selected != " "):
+  if(actual_quantity != quantity_selected or option_selected != " "):
     pass
   else:
     message = "The test failed. The quantity expected is no the same in the cart."
@@ -72,10 +73,15 @@ def remove_from_cart(context):
   home_page = Singleton.getInstance(context,HomePage)
   context.browser.find_element(By.CSS_SELECTOR, home_page.locators['delete_item']).click()
   
-@then('I see my cart empty')
-def validate_empty_cart(context):
-  message = "Seu carrinho de compras da Amazon está vazio."
+@then('I see the {message}')
+def validate_empty_cart(context, message):
+  home_page = Singleton.getInstance(context,HomePage)
+  expected_message = home_page.datapool_read(home_page, SYSTEM_MESSAGES,'cart_messages', message)
   time.sleep(1)
-  empty_cart_message = context.browser.find_element_by_xpath("//*[contains(text(), '"+message+"')]").text
-  assert_equals(message, empty_cart_message)
+  current_message = context.browser.find_element_by_xpath("//*[contains(text(), '"+expected_message+"')]").text
+  if current_message == expected_message :
+    pass
+  else:
+        message = "The page threw wrong message on the cart screen. It was expected the '"+expected_message+"' and was obtained '"+current_message+"'."
+        raise Exception(message)
   

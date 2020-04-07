@@ -47,9 +47,9 @@ Feature: Amazon shopping cart functionality
     And I select the product with quantity <quantity> and the option <options>
     And I add it to the cart and validate if the <wanted> product is in the cart and if the quantity in the cart is <quantity> and option is <options>
     And I remove the product from my cart
-    Then I see my cart empty
+    Then I see the <message>
 
     Examples:
 
-      | credential       | product | wanted                                                     | quantity | options |
-      | valid credential | kindle  | Kindle Oasis 32Gb - Agora com temperatura de luz ajustável | 1        | 32 GB   |
+      | credential       | product | wanted                                                     | quantity | options | message    |
+      | valid credential | kindle  | Kindle Oasis 32Gb - Agora com temperatura de luz ajustável | 1        | 32 GB   | empty cart |

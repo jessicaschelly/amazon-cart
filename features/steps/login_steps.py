@@ -64,8 +64,8 @@ def fill_in_the_field_a_password(context, credential, password):
 @when(u'I am current in Home Page')
 @then(u'I am current in Home Page')
 def current_page_is_home_page(context):
-    text = "Olá, Jéssica"
-    if (text in context.browser.page_source):
+    text = "Olá, Faça seu login"
+    if (text not in context.browser.page_source):
       pass
     else:
       message = "Test Failed. You are not at the home page."

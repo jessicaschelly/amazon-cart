@@ -8,4 +8,9 @@ SYSTEM_MESSAGES = {
             "invalid_format_email": "Não encontramos uma conta associada a este endereço de e-mail",
         }
     ],
+    "cart_messages": [
+        {
+            "empty_cart":"Seu carrinho de compras da Amazon está vazio.",
+        }  
+    ],
 }
