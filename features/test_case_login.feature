@@ -13,7 +13,7 @@ Feature: Login in Amazon website
       | credential       |
       | valid credential |
 
-  Scenario Outline: Query an invalid email for login
+  Scenario Outline: Validate message for invalid email for login
     Given I navigate to the Amazon Login page
     When I fill in the field username with <credential>
     And I click on Continue button
@@ -27,7 +27,7 @@ Feature: Login in Amazon website
       | invalid email format | invalid format email |
 
 
-  Scenario Outline: Query an invalid password for login
+  Scenario Outline: Validate message for invalid password for login
     Given I navigate to the Amazon Login page
     When I fill in the field username with <credential>
     And I click on Continue button
