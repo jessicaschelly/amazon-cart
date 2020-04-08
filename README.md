@@ -2,35 +2,35 @@
 
 This is an automation test using Selenium, Python and Behave(Cucumber). It provides the following automated tests for the features Login and Cart of Amazon Website.
 
-I used Linux Mint environment to develop this automation.
-
 Login Feature:
+
 - Validate Successful Login on Amazon Website
 - Validate message for entry with invalid email for login
-		- email  not  registered
-		- empty email
-		- invalid email format
+  - email not registered
+  - empty email
+  - invalid email format
 - Validate message for entry with an invalid password for login
-		- invalid password
-		- empty password field
-		
-Cart: 
+  - invalid password
+  - empty password field
+
+Cart:
 
 - Search for a product and verify the list response
 - Add the product to cart and verify product is added to the cart successfully
-		- validate the price, quantity, and options for the product in the cart
+  - validate the price, quantity, and options for the product in the cart
 - Validate the removal of a product in my cart
 
+I used Linux Mint environment to develop this automation.
 
 Note: Amazon sometimes requires captcha and I didn't find a way to bypass it (neither should I have), so when the website requires to fill in the captcha you need to do it manually.
 First access for amazon requires e-mail validation, so I implemented a helper who does it automatically for the user. (but again, if captcha is needed you need to do it manually)
 
 **Prerequisites**
+
 - Python 3.6 or above
 - Pip
-- Behave 
-- Selenium 
-
+- Behave
+- Selenium
 
 **Installation Guide**
 
@@ -61,6 +61,6 @@ You can find an installation Guide here: https://selenium-python.readthedocs.io/
 
 **_Step 5:_** To run the test cases you can run:
 
- `behave`
-`behave -n 'the scenario you want to run'`
-`behave ./features/test_you_want.feature`
+- `behave`
+- `behave -n 'the scenario you want to run'`
+- `behave ./features/test_you_want.feature`
