@@ -37,7 +37,7 @@ def before_scenario(context, scenario):
     browser_name = context.config.userdata.get('browser')
     driver = browser_config(context, browser_name)
     context.browser = driver
-    context.browser.implicitly_wait(10)
+    context.browser.implicitly_wait(5)
     context.browser.set_page_load_timeout(10)
 
 def after_scenario(context, scenario):

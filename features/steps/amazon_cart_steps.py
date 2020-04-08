@@ -79,9 +79,11 @@ def validate_empty_cart(context, message):
   expected_message = home_page.datapool_read(home_page, SYSTEM_MESSAGES,'cart_messages', message)
   time.sleep(1)
   current_message = context.browser.find_element_by_xpath("//*[contains(text(), '"+expected_message+"')]").text
-  if current_message == expected_message :
+  # New message comparison needed because amazon changes the cart empty alert
+  alternative_message = "Seu carrinho de compras está vazio."
+  if (current_message == expected_message or alternative_message == expected_message):
     pass
   else:
-        message = "The page threw wrong message on the cart screen. It was expected the '"+expected_message+"' and was obtained '"+current_message+"'."
-        raise Exception(message)
+    message = "The page threw wrong message on the cart screen. It was expected the '"+expected_message+"' and was obtained '"+current_message+"'."
+    raise Exception(message)
   

@@ -26,6 +26,7 @@ def fill_in_the_field_username(context, credential):
 
 @when(u'I fill in the field password with {credential}')
 def fill_in_the_field_password(context, credential):
+    context.credential = credential;
     fill_in_the_field_a_password(context, credential, 'password')
 
 @when(u'I click on Continue button')
@@ -39,11 +40,21 @@ def click_on_sign_in(context):
     login_page = Singleton.getInstance(context,LoginPage)
     sign_in_button = context.browser.find_element(By.CSS_SELECTOR, login_page.locators['sign_in_button'])
     sign_in_button.click()
+    time.sleep(2)
+
+    # For captcha you will need to enter the information manually.
+    if ("Insira os caracteres que está vendo" in context.browser.page_source):
+      fill_in_the_field_password(context, context.credential)
+      WebDriverWait(context.browser, 100).until(EC.invisibility_of_element((By.CSS_SELECTOR, '#auth-captcha-image')))
+    # Script to automate first login verification.
     text= "Verificação necessária"
     if (text in context.browser.page_source):
       click_on_continue(context)
-      run_gmail(context)
-
+      verification_number = run_gmail(context)
+      WebDriverWait(context.browser, 100).until(EC.invisibility_of_element((By.CSS_SELECTOR, '#auth-captcha-image')))
+      context.browser.find_element(By.CSS_SELECTOR, "[name='code']").send_keys(verification_number)
+      context.browser.find_element(By.CSS_SELECTOR, "#a-autoid-0").click()
+      time.sleep(5)
 
 @when(u'the field username is filled with {credential} and the user {user}')
 def fill_in_the_field_an_username(context, credential, user):
@@ -65,10 +76,7 @@ def fill_in_the_field_a_password(context, credential, password):
 @then(u'I am current in Home Page')
 def current_page_is_home_page(context):
     text = "Olá, Faça seu login"
-    if (text not in context.browser.page_source):
-      pass
-    else:
-      message = "Test Failed. You are not at the home page."
+    assert_equals(True, text not in context.browser.page_source)
 
 @when("the Login page should have an error message: {message}")
 @then("the Login page should have an error message: {message}")
