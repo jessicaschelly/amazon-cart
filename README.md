@@ -1,3 +1,5 @@
+# Amazon Cart Automation
+
 This is an automation test using Selenium, Python and Behave(Cucumber). It provides the following automated tests for the features Login and Cart of Amazon Website.
 
 I used Linux Mint environment to develop this automation.
