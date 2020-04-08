@@ -1,5 +1,7 @@
 This is an automation test using Selenium, Python and Behave(Cucumber). It provides the following automated tests for the features Login and Cart of Amazon Website.
 
+I used Linux Mint environment to develop this automation.
+
 Login Feature:
 - Validate Successful Login on Amazon Website
 - Validate message for entry with invalid email for login
