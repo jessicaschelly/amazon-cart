@@ -77,9 +77,8 @@ def remove_from_cart(context):
 def validate_empty_cart(context, message):
   home_page = Singleton.getInstance(context,HomePage)
   expected_message = home_page.datapool_read(home_page, SYSTEM_MESSAGES,'cart_messages', message)
-  time.sleep(1)
   current_message = context.browser.find_element_by_xpath("//*[contains(text(), '"+expected_message+"')]").text
-  # New message comparison needed because amazon changes the cart empty alert
+  # New message compare needed because amazon changes the cart empty alert
   alternative_message = "Seu carrinho de compras está vazio."
   if (current_message == expected_message or alternative_message == expected_message):
     pass

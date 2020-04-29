@@ -13,8 +13,6 @@ def run_gmail(context):
   unreademail = context.browser.find_elements(By.CLASS_NAME,"zA")
   unreademail[0].click()
 
-  time.sleep(3)
-
   path = "/html/body/div[7]/div[3]/div/div[2]/div[1]/div[2]/div/div/div/div/div[2]/div/div[1]/div/div[2]/div/table/tr/td[1]/div[2]/div[2]/div/div[3]/div/div/div/div/div/div[1]/div[2]/div[3]/div[3]/div/div[2]/table/tbody/tr/td/table/tbody/tr[2]/td/p[2]"
   verification_email = context.browser.find_element(By.XPATH, path).text
 
@@ -24,7 +22,3 @@ def run_gmail(context):
   context.browser.close()
   context.browser.switch_to.window(context.browser.window_handles[0])
   return verification_email
-
-
-
-

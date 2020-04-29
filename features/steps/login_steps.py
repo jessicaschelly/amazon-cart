@@ -40,7 +40,6 @@ def click_on_sign_in(context):
     login_page = Singleton.getInstance(context,LoginPage)
     sign_in_button = context.browser.find_element(By.CSS_SELECTOR, login_page.locators['sign_in_button'])
     sign_in_button.click()
-    time.sleep(2)
 
     # For captcha you will need to enter the information manually.
     if ("Insira os caracteres que está vendo" in context.browser.page_source):
@@ -54,7 +53,6 @@ def click_on_sign_in(context):
       WebDriverWait(context.browser, 100).until(EC.invisibility_of_element((By.CSS_SELECTOR, '#auth-captcha-image')))
       context.browser.find_element(By.CSS_SELECTOR, "[name='code']").send_keys(verification_number)
       context.browser.find_element(By.CSS_SELECTOR, "#a-autoid-0").click()
-      time.sleep(5)
 
 @when(u'the field username is filled with {credential} and the user {user}')
 def fill_in_the_field_an_username(context, credential, user):
